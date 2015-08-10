@@ -2,7 +2,30 @@
 2. (terminal) cd goals_app
 3. (terminal) rake db: create
 4. (terminal) subl .
-5. (sublime) routes.rb: add routes for users, sessions, & goals
+5. (sublime) routes.rb: 
+
+# add routes for users, sessions, & goals
+
+Rails.application.routes.draw do
+
+  # users routes
+  get "/signup", to: "users#new"
+  get "/profile", to: "users#show"
+  resources :users, only: [:create]
+
+  # sessions routes
+  get "/login", to: "sessions#new"
+  get "/logout", to: "sessions#destroy"
+  # post "/sessions", to: "sessions#create" 
+  resources :sessions, only: [:create]
+
+
+  # goals routes
+  resources :goals, except: [:index]
+
+  root "goals#index"
+end
+
 6. (terminal) rake routes
 7. (terminal: create users controller) rails g controller users new create show
 8. (sublime) delete the new, create, show routes in routes.rb
