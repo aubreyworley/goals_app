@@ -1,0 +1,17 @@
+<h1>Profile Page</h1>
+<div>
+  <p><%= current_user.first_name %></p>
+  <p><%= current_user.last_name %></p>
+  <p><%= current_user.email %></p>
+</div>
+
+<%= if current_user.goals.any? %>
+  <h3>My Goals</h3>
+  <% current_user.goals.each do |goal| %>
+    <p><%= goal.description %> - <%= goal.time_to_complete %></p>
+  <% end %>
+<% else %>
+  <h4> You don't have any goals yet! </h4>
+  <%= link_to "Add New Goal", new_goal_path %>
+<% end %>
+

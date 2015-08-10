@@ -1,0 +1,9 @@
+<h1><%= @goal.description %></h1>
+<hr>
+<p><%= @goal.time_to_complete %></p>
+
+<% if current_user && current_user.goals.include?(@goal) %>
+  <p><%= link_to "Edit Goal", edit_goal_path(@goal) %>
+    <%= link_to "Delete Goal", delete_goal_path(@goal) %>
+<% end %>
+ 

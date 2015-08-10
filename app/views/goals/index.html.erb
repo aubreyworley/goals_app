@@ -1,0 +1,9 @@
+<h1>Goals</h1>
+<hr>
+<% @goals.each do |goal| %>
+  <p><%= goal.description %> - <%= goal.time_to_complete %> <%= link_to "View Goal", goal_path(goal)  %></p>
+<% end %>
+
+<% if current_user %>
+  <%= link_to "Add New Goal", new_goal_path %>
+  <% end %>
